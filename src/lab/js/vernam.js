@@ -5,35 +5,35 @@ function validKey() {
     key = document.getElementById("user_key").value;
     var i = 0;
     for(i=0; i<key.length; i++){
-	if (key.charAt(i) != "0" && key.charAt(i)!= "1") {
+	if (key.charAt(i) !== "0" && key.charAt(i)!== "1") {
 	    break;
 	}
     }
-    if (i != key.length) {
+    if (i !== key.length) {
 	alert("Only binary keys allowed!");
     }
 }
 
 function XOR(a, b) {
-    if((a == "0" && b == "0"))
+    if((a === "0" && b === "0"))
         return "0";
-    else if((a == "0" && b == "1"))
+    else if((a === "0" && b === "1"))
         return "1";
-    else if((a == "1" && b == "0"))
+    else if((a === "1" && b === "0"))
         return "1";
-    else if((a == "1" && b == "1"))
+    else if((a === "1" && b === "1"))
         return "0";
     return "0";
 }
 
 function EQV(a, b) {
-    if((a == "0" && b == "0"))
+    if((a === "0" && b === "0"))
         return "1";
-    else if((a == "0" && b == "1"))
+    else if((a === "0" && b === "1"))
         return "0";
-    else if((a == "1" && b == "0"))
+    else if((a === "1" && b === "0"))
         return "0";
-    else if((a == "1" && b == "1"))
+    else if((a === "1" && b === "1"))
         return "1";
     return "1";
 }
@@ -86,7 +86,7 @@ function Vernam_RandSequence(len){
 function makeEqualProbability(seq) {
     var eq_seq = "";
     for(i=0;i<seq.length;i++) {
-        if((seq.charAt(i) == "0")) {
+        if((seq.charAt(i) === "0")) {
 	    eq_seq += "01";
 	}
 	else {
@@ -187,9 +187,9 @@ function check_key() {
 	return;
     }
     for (i=0;i<key.length;i++) {
-	if (key.charAt(i) == '0') {
+	if (key.charAt(i) === '0') {
 	    zero ++;
-	} else if (key.charAt(i) == '1') {
+	} else if (key.charAt(i) === '1') {
 	    one ++;
 	} else {
 	    alert("Invalid Key. Please enter a binary key.");
@@ -205,7 +205,7 @@ function check_key() {
  
 function Encrypt_p() {
     var k = document.getElementById("keyarea_gen").value;
-    if (k == "") {
+    if (k === "") {
 	alert("Please calculate the new key with p=0.5");
 	return;
     }
@@ -223,7 +223,7 @@ function next_binary_num(binary_num) {
     var index = 0;
     var len = binary_num.length;
     //replace the first "0" with "1"
-    if (index < len && binary_num.charAt(index) == "0") {
+    if (index < len && binary_num.charAt(index) === "0") {
 	binary_num = "1" + binary_num.substring(1);
      return binary_num;
     }
@@ -254,7 +254,7 @@ function next_binary_num(binary_num) {
 
 function generate_all_pairs() {
     var key = document.getElementById("user_key").value;
-    if (key.length == 0) {
+    if (key.length === 0) {
 	alert("Please enter a binary key!");
         return;
     }
@@ -273,7 +273,7 @@ function generate_all_pairs() {
 }
 
 function checkAnswer() {
-    if (document.getElementById("yesno").value == 'yes')
+    if (document.getElementById("yesno").value === 'yes')
     {
         document.getElementById("notification").value = "This is not correct, Please try again!";
 	return;
@@ -288,7 +288,7 @@ function checkAnswer() {
     key = resize_key(key);
     var c1 = encrypt(m1, key);
     var c2 = encrypt(m2, key);
-    if(c1 == c2) {
+    if(c1 === c2) {
 	document.getElementById("notification").value = "CORRECT!!";
     } else {
         document.getElementById("notification").value = "This is not correct, Please try again!";
