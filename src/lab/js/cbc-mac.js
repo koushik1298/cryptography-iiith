@@ -1,4 +1,3 @@
-
 function trim(str) {
     return str.replace(/\s+/g,"");
 }
@@ -11,7 +10,7 @@ function validate_binary(input) {
     var len = input.length;
     var i;
     for(i=0;i<len;i++) {
-	if(input.charAt(i) != "0" && input.charAt(i) != "1") {
+	if(input.charAt(i) !== "0" && input.charAt(i) !== "1") {
 	    break;
 	}
     }
@@ -34,31 +33,31 @@ function rand_sequence(len){
 }
 
 function XOR(a, b) {
-    if((a == "0" && b == "0"))
+    if((a === "0" && b === "0"))
         return "0";
-    else if((a == "0" && b == "1"))
+    else if((a === "0" && b === "1"))
         return "1";
-    else if((a == "1" && b == "0"))
+    else if((a === "1" && b === "0"))
         return "1";
-    else if((a == "1" && b == "1"))
+    else if((a === "1" && b === "1"))
         return "0";
     return "0";
 }
 
 function EQV(a, b) {
-    if((a == "0" && b == "0"))
+    if((a === "0" && b === "0"))
         return "1";
-    else if((a == "0" && b == "1"))
+    else if((a === "0" && b === "1"))
         return "0";
-    else if((a == "1" && b == "0"))
+    else if((a === "1" && b === "0"))
         return "0";
-    else if((a == "1" && b == "1"))
+    else if((a === "1" && b === "1"))
         return "1";
     return "1";
 }
 
 function xor_strings(a, b) {
-	if(a.length != b.length) {
+	if(a.length !== b.length) {
 		alert("Error calculating XOR");
 		return;
 	}
@@ -141,7 +140,7 @@ function function_value(input, key) {
 
     var output = "";
     for( var i=0;i<l;i++) {
-        if(current_function.charAt(i) == "0") {
+        if(current_function.charAt(i) === "0") {
             output += XOR(input.charAt(i), key.charAt(i));
         }
         else {
@@ -156,7 +155,7 @@ function apply_function() {
     var input = document.getElementById("usertext").value;
      
    var l = input.length;	
-    if(validate_binary(input) == 0 || l != current_l) {
+    if(validate_binary(input) === 0 || l !== current_l) {
 		document.getElementById("usertext").value = "Please give a binary string of size " + current_l;
 		return;
     }
@@ -176,7 +175,7 @@ function pad_input(input) {
 
 function CheckAnswer() {
 	var user_answer = document.getElementById("outputarea").value;
-	if(user_answer.length == 0) {
+	if(user_answer.length === 0) {
 		alert("Please enter an answer!");
 		return;
 	}
@@ -189,7 +188,7 @@ function CheckAnswer() {
         var gethashfor = xor_strings(iv, plaintext.substring(startIndex, startIndex+current_l));
         iv = function_value(gethashfor, key);
     }   
-    if(trim(user_answer) == trim(iv)) {
+    if(trim(user_answer) === trim(iv)) {
         document.getElementById('notification').innerHTML = "CORRECT!!";
     } else {
         document.getElementById('notification').innerHTML = "Incorrect answer, please try again!";
