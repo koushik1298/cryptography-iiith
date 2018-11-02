@@ -13,9 +13,9 @@ var j_lm = ((canary&0xffffff)==0xefcafe);
 
 // (public) Constructor
 function BigInteger(a,b,c) {
-  if(a != null)
-    if("number" == typeof a) this.fromNumber(a,b,c);
-    else if(b == null && "string" != typeof a) this.fromString(a,256);
+  if(a !== null)
+    if("number" === typeof a) this.fromNumber(a,b,c);
+    else if(b === null && "string" !== typeof a) this.fromString(a,256);
     else this.fromString(a,b);
 }
 
@@ -67,11 +67,11 @@ function am3(i,x,w,j,c,n) {
   }
   return c;
 }
-if(j_lm && (navigator.appName == "Microsoft Internet Explorer")) {
+if(j_lm && (navigator.appName === "Microsoft Internet Explorer")) {
   BigInteger.prototype.am = am2;
   dbits = 30;
 }
-else if(j_lm && (navigator.appName != "Netscape")) {
+else if(j_lm && (navigator.appName !== "Netscape")) {
   BigInteger.prototype.am = am1;
   dbits = 26;
 }
@@ -128,12 +128,12 @@ function nbv(i) { var r = nbi(); r.fromInt(i); return r; }
 // (protected) set from string and radix
 function bnpFromString(s,b) {
   var k;
-  if(b == 16) k = 4;
-  else if(b == 8) k = 3;
-  else if(b == 256) k = 8; // byte array
-  else if(b == 2) k = 1;
-  else if(b == 32) k = 5;
-  else if(b == 4) k = 2;
+  if(b === 16) k = 4;
+  else if(b === 8) k = 3;
+  else if(b === 256) k = 8; // byte array
+  else if(b === 2) k = 1;
+  else if(b === 32) k = 5;
+  else if(b === 4) k = 2;
   else { this.fromRadix(s,b); return; }
   this.t = 0;
   this.s = 0;
@@ -141,11 +141,11 @@ function bnpFromString(s,b) {
   while(--i >= 0) {
     var x = (k==8)?s[i]&0xff:intAt(s,i);
     if(x < 0) {
-      if(s.charAt(i) == "-") mi = true;
+      if(s.charAt(i) === "-") mi = true;
       continue;
     }
     mi = false;
-    if(sh == 0)
+    if(sh === 0)
       this[this.t++] = x;
     else if(sh+k > this.DB) {
       this[this.t-1] |= (x&((1<<(this.DB-sh))-1))<<sh;
@@ -156,7 +156,7 @@ function bnpFromString(s,b) {
     sh += k;
     if(sh >= this.DB) sh -= this.DB;
   }
-  if(k == 8 && (s[0]&0x80) != 0) {
+  if(k === 8 && (s[0]&0x80) != 0) {
     this.s = -1;
     if(sh > 0) this[this.t-1] |= ((1<<(this.DB-sh))-1)<<sh;
   }
@@ -174,11 +174,11 @@ function bnpClamp() {
 function bnToString(b) {
   if(this.s < 0) return "-"+this.negate().toString(b);
   var k;
-  if(b == 16) k = 4;
-  else if(b == 8) k = 3;
-  else if(b == 2) k = 1;
-  else if(b == 32) k = 5;
-  else if(b == 4) k = 2;
+  if(b === 16) k = 4;
+  else if(b === 8) k = 3;
+  else if(b === 2) k = 1;
+  else if(b === 32) k = 5;
+  else if(b === 4) k = 2;
   else return this.toRadix(b);
   var km = (1<<k)-1, d, m = false, r = "", i = this.t;
   var p = this.DB-(i*this.DB)%k;
@@ -209,7 +209,7 @@ function bnAbs() { return (this.s<0)?this.negate():this; }
 // (public) return + if this > a, - if this < a, 0 if equal
 function bnCompareTo(a) {
   var r = this.s-a.s;
-  if(r != 0) return r;
+  if(r !== 0) return r;
   var i = this.t;
   r = i-a.t;
   if(r != 0) return r;
